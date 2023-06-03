@@ -2,24 +2,12 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh; */
 }
 tr th {
   cursor: pointer;
 }
 #root {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   height: 100vh;
 }
@@ -119,6 +107,7 @@ th {
   position: relative;
   display: block;
   margin: auto;
+  border: none;
 
   border-collapse: collapse;
   background: #ffff;
@@ -148,7 +137,7 @@ th {
 .add-btn {
   position: absolute;
   top: -26px;
-  left: -132px;
+  left: -88px;
 }
 .style-btn {
   position: absolute;
@@ -236,7 +225,7 @@ th {
   border-radius: 8px;
   cursor: pointer;
 
-  padding: 16px 42px;
+  padding: 16px 20px;
 
   line-height: 1.25;
   background: #fc6e51;
@@ -275,7 +264,7 @@ th {
 .style-btn {
   position: absolute;
   top: 0;
-  right: -107px;
+  right: -62px;
 }
 .btn-save {
   background: #0066a2;
@@ -345,17 +334,15 @@ th {
   box-shadow: 1px 1px 3px;
 }
 .table-wrapper {
-  padding: 500px 0 0 0;
   position: relative;
-
 }
 .modal-relative {
   position: relative;
   display: inline-block;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 350px;
+  padding-right: 350px;
+  overflow: auto;
 }
-
 
 /* 
 все по 120 
@@ -383,7 +370,6 @@ thead tr th {
 RESPONSIVE TABLE
 =========================
 */
-
 
 @media (max-width: 1200px) {
   .table thead {

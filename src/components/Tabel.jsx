@@ -183,7 +183,7 @@ const Tabel = () => {
   return (
     <>
       <SearchBar callback={(searchValue) => setSearchValue(searchValue)} />
-      {/* <div className='table-content'></div> */}
+
       <div className='modal-relative'>
         <table
           className='table'
@@ -200,7 +200,7 @@ const Tabel = () => {
         >
           <TableHeader onSort={onSort} setToggleColumn={setToggleColumn} />
 
-          <tbody>
+          <tbody style={{ backgroundColor: tableStyles.backgroundColor }}>
             <TableRow
               dataRow={filteredData}
               deleteRow={handelDeleteRow}
