@@ -1,5 +1,3 @@
-.modal-container {
-}
 .modal.modal-open {
   left: 86px;
   opacity: 1;
@@ -21,9 +19,7 @@
 }
 .modal.modal-close {
   left: 349px;
-  /* left 0 */
   opacity: 1;
-  /* z-index: -1; */
 }
 
 .form-group {

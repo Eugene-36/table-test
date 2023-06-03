@@ -344,10 +344,6 @@ th {
   overflow: auto;
 }
 
-/* 
-все по 120 
-706
-*/
 tbody tr td:nth-child(4),
 thead tr th:nth-child(4) {
   width: 706px;
@@ -364,85 +360,6 @@ thead tr th:last-child {
 thead tr th {
   text-align: center;
 }
-
-/* 
-=========================
-RESPONSIVE TABLE
-=========================
-*/
-
-@media (max-width: 1200px) {
-  .table thead {
-    /* display: none; */
-  }
-  .modal-relative {
-    overflow: auto;
-  }
-
-  /* Set table cells to display in a grid */
-  .table td {
-    /* display: grid; */
-    /* gap: 0.5rem;
-    grid-template-columns: 45ch auto; */
-    /* 15ch */
-  }
-  /* .table tbody tr td:last-child {
-    grid-template-columns: 5ch auto;
-  }
-  td {
-    border: none;
-  }
-  .table td {
-    border-top: none;
-  }
-  tr {
-    border-bottom: 5px solid #ccc;
-  } */
-  /* Add labels before each table cell content */
-  .table td::before {
-    /* content: attr(data-cell) ':'; */
-    /* font-weight: 700;
-    text-transform: capitalize; */
-  }
-  /* .table-content {
-    width: 714px;
-  } */
-  /* td:nth-of-type(1)::before {
-    content: 'id';
-  }
-  td:nth-of-type(2)::before {
-    content: 'Full Name';
-  } */
-  /* Adjust column widths */
-  /* .table tbody tr td:nth-child(4),
-  .table thead tr th:nth-child(4) {
-    width: 100%;
-  }
-  .table tbody tr td:nth-child(3),
-  .table tbody tr td:nth-child(2),
-  .table tbody tr td:last-child,
-  .table thead tr th:nth-child(3),
-  .table thead tr th:nth-child(2),
-  .table thead tr th:last-child {
-    width: 20%;
-  }
-  .table tbody tr td,
-  .table thead tr th {
-    font-size: 12px;
-  }
-  .delete-btn {
-    margin: 5px 0 0 0;
-  }
-  tbody tr td:last-child {
-    text-align: center;
-  } */
-}
-/* @media (max-width: 1060px) {
-  .container-header {
-    width: 100%;
-  }
-} */
-
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
@@ -454,13 +371,32 @@ RESPONSIVE TABLE
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+/* 
+=========================
+RESPONSIVE TABLE
+=========================
+*/
+@media (max-width: 1875px) {
+  tbody tr td:last-child {
+    text-align: center;
+  }
+  tbody tr td:last-child .edit-btn {
+    margin: 0 3px 10px 0;
+  }
+}
 
 @media (max-width: 1500px) {
   .container-header {
-    width: 850px;
+    width: 1000px;
   }
   .table {
     width: 850px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .modal-relative {
+    overflow: auto;
   }
 }
 @media (max-width: 992px) {
