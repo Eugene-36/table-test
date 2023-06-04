@@ -49,10 +49,10 @@ const TableRow = ({
         stateModalClose ? (id === activeRowId ? 'activeElementEdit' : '') : ''
       }
     >
-      <td data-cell={id}>{id}</td>
-      <td data-cell={name}>{name}</td>
-      <td data-cell={title}>{title}</td>
-      <td data-cell={description}>{description}</td>
+      <td>{id}</td>
+      <td>{name}</td>
+      <td>{title}</td>
+      <td>{description}</td>
       <td>
         <button onClick={() => editRow(id)} className='edit-btn'>
           Edit

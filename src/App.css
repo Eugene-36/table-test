@@ -72,9 +72,7 @@ form div .failure-icon {
   position: relative;
   /* overflow-y: auto; */
 }
-table {
-  border: 1px solid #ccc;
-}
+
 tr {
   border: 1px solid #ccc;
 }
@@ -107,8 +105,6 @@ th {
   position: relative;
   display: block;
   margin: auto;
-  border: none;
-
   border-collapse: collapse;
   background: #ffff;
   width: 100%;
