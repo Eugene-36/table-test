@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
 const Modal = ({
@@ -47,36 +45,38 @@ const Modal = ({
     setErrors({});
     setIsValid(false);
   };
-  // ======
-  const initState = () => {
-    let id = '';
-    let name = '';
-    let title = '';
-    let description = '';
-    let checkUniqueId = currentArray.filter((el) => formState.id === el.id);
+
+  const onValidate = () => {
+    const errors = {
+      id: '',
+      name: '',
+      title: '',
+      description: '',
+    };
+    let isNounUniqueId = currentArray.some((el) => formState.id === el.id);
 
     if (!formState.id) {
-      id = 'Cannot be blank';
-    } else if (checkUniqueId.length !== 0 && !defaultValue) {
-      id = 'Id should be unique';
+      errors.id = 'Cannot be blank';
+    } else if (isNounUniqueId && !defaultValue) {
+      errors.id = 'Id should be unique';
     }
 
     if (!formState.name) {
-      name = 'Cannot be blank';
+      errors.name = 'Cannot be blank';
     }
     if (!formState.title) {
-      title = 'Cannot be blank';
+      errors.title = 'Cannot be blank';
     }
     if (!formState.description) {
-      description = 'Cannot be blank';
+      errors.description = 'Cannot be blank';
     }
+    const hasError = Object.values(errors).some((el) => el !== '');
 
-    if (id || name || description || title) {
-      setErrors({ id, name, title, description });
+    if (hasError) {
+      setErrors(errors);
       setIsValid(false);
       return false;
     }
-
     setIsValid(true);
     return true;
   };
@@ -84,7 +84,7 @@ const Modal = ({
   const handelSubmit = (e) => {
     e.preventDefault();
 
-    const isValidForm = initState();
+    const isValidForm = onValidate();
 
     if (isValidForm) {
       onSubmit(formState);
@@ -103,21 +103,22 @@ const Modal = ({
             triggerModal(!stateModal);
           }}
         >
-          {stateModal ? '<<' : '>>'}
+          <span className='material-symbols-outlined'>add</span>
         </button>
         <form onSubmit={handelSubmit}>
           <h3> Edit / Add</h3>
           <div className='form-group'>
             <label htmlFor='id'>ID</label>
             <input
-              value={formState?.id}
+              type='number'
+              name='id'
+              placeholder='Enter Id*'
+              disabled={defaultValue === null ? false : true}
+              value={formState.id}
               className={`input-field ${
                 errors.id ? 'invalid' : formState.id ? 'success' : ''
               }`}
-              type='number'
-              name='id'
               onChange={handelChange}
-              placeholder='Enter Id'
             />
             {errors.id ? (
               <i className='fas fa-exclamation-circle failure-icon'></i>
@@ -135,12 +136,12 @@ const Modal = ({
             <input
               type='text'
               name='name'
+              placeholder='Enter Full Name*'
               onChange={handelChange}
               value={formState.name}
               className={`input-field ${
                 errors.name ? 'invalid' : formState.name ? 'success' : ''
               }`}
-              placeholder='Enter Full Name'
             />
             {errors.name ? (
               <i className='fas fa-exclamation-circle failure-icon'></i>
@@ -157,12 +158,12 @@ const Modal = ({
             <input
               type='text'
               name='title'
+              placeholder='Enter Title*'
               onChange={handelChange}
               value={formState.title}
               className={`input-field ${
                 errors.title ? 'invalid' : formState.title ? 'success' : ''
               }`}
-              placeholder='Enter Title'
             />
             {errors.title ? (
               <i className='fas fa-exclamation-circle failure-icon'></i>
@@ -179,8 +180,9 @@ const Modal = ({
             <textarea
               type='text'
               name='description'
-              onChange={handelChange}
               value={formState.description}
+              placeholder='Enter Cite*'
+              onChange={handelChange}
               className={`input-field ${
                 errors.description
                   ? 'invalid'
@@ -188,7 +190,6 @@ const Modal = ({
                   ? 'success'
                   : ''
               }`}
-              placeholder='Enter Cite'
             />
             {errors.description ? (
               <i className='fas fa-exclamation-circle failure-icon'></i>
@@ -200,7 +201,18 @@ const Modal = ({
             <span className='text-danger'>{errors.description}</span>
           </div>
 
-          <button type='submit' className='btn-save'>
+          <button
+            disabled={
+              formState.description ||
+              formState.id ||
+              formState.name ||
+              formState.title !== ''
+                ? false
+                : true
+            }
+            type='submit'
+            className='btn-save'
+          >
             Save
           </button>
           <button

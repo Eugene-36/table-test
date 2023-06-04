@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
 const TabelStyle = ({ modalState, styleTableModal }) => {
@@ -43,7 +40,7 @@ const TabelStyle = ({ modalState, styleTableModal }) => {
             styleTableModal(!modalState);
           }}
         >
-          {modalState ? '>>' : '<<'}
+          <span className='material-symbols-outlined'>settings</span>
         </button>
         <form onSubmit={handleSubmit}>
           <h3>Customization</h3>

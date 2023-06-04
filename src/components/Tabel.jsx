@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -20,16 +18,15 @@ const Tabel = () => {
 
   const [rowToEdit, setRowToEdit] = useState(null);
   const [activeRow, setActiveRowId] = useState('');
-  //! СТЕЙТ ДЛЯ СТИЛЕЙ ТАБЛИЦЫ
+
+  // State for style table
   const [tableStyles, setTableStyles] = useState({});
-  // ! REF
-  // ===========================
+
   const [newRowId, setNewRowId] = useState(null);
-  // ==================================
   const [searchValue, setSearchValue] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
-  // ЗАПРОС НА ДАННЫЕ И ЗАПИСЬ В LOCAL STORAGE
+  // Request for the data and writing them down to local storage
   useEffect(() => {
     const fetchMainData = async () => {
       try {
@@ -53,7 +50,7 @@ const Tabel = () => {
     };
     fetchMainData();
   }, []);
-  // Получение стилей таблицы из localstorage
+  // Get style for the table from local storage
   useEffect(() => {
     const savedTableStyles = localStorage.getItem('tableStyles');
 
@@ -62,28 +59,25 @@ const Tabel = () => {
     }
   }, []);
 
-  //СОРТИРОВКА ДЛЯ ИНПУТА НАД ТАБЛИЦЕЙ
+  // The logic for sorting data by input
   useEffect(() => {
     const filterData = (searchValue) => {
       if (searchValue === '') return data;
 
-      return data.filter(
-        (user) =>
-          user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-          user.description.toLowerCase().includes(searchValue.toLowerCase()) ||
-          user.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-          user.id.toString().toLowerCase().includes(searchValue.toLowerCase())
+      return data.filter((user) =>
+        Object.values(user).some((value) =>
+          value.toString().toLowerCase().includes(searchValue.toLowerCase())
+        )
       );
     };
-
     const filteredUsers = filterData(searchValue);
     setFilteredData(filteredUsers);
   }, [data, searchValue]);
 
-  // ===================================
   if (isLoading) {
     return <div>Data is loading...</div>;
   }
+  // Sorting data by columns
   const onSort = (columnName) => {
     let sortedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
     const sortKey = {
@@ -91,9 +85,6 @@ const Tabel = () => {
       Title: 'title',
       Cite: 'description',
     };
-    //? Сортировка
-    //? по столбцам
-    //! ошибка title
     if (columnName !== '#') {
       sortedData.sort((a, b) => {
         const headerStringValueA = a[sortKey[columnName]];
@@ -117,7 +108,7 @@ const Tabel = () => {
     setData(sortedData);
   };
 
-  //Удаление строки из local Storage
+  // Delete row from local storage
   const handelDeleteRow = (targetIndex) => {
     const allObjects = JSON.parse(localStorage.getItem('dataArray'));
     const approveAction = confirm('Press the button to confirm the action');
@@ -130,9 +121,8 @@ const Tabel = () => {
     return false;
   };
 
-  // ? Тут происходит добавления новой записи
-  //? Исходя из сортировки
-  //? Или обновление существующих данных отдельной строки
+  //Here is the logic for adding new rows according to the sorting
+  // or editing of existing data
   const handelSubmit = (newRow) => {
     const allEntries = JSON.parse(localStorage.getItem('dataArray') || []);
     const existingRowIndex = allEntries.findIndex(
@@ -169,15 +159,12 @@ const Tabel = () => {
 
   const handleEditRow = (index) => {
     const rowToEdit = data.find((element) => element.id === index);
-    // console.log('handleEditRow', rowToEdit);
     setRowToEdit(rowToEdit);
     setModalOpen(true);
-    // Установить активный идентификатор строки
     setActiveRowId(index);
   };
   const handleCloseModal = () => {
     setModalOpen(false);
-    // Сбросить активный идентификатор строки
     setActiveRowId(null);
   };
   return (
@@ -199,7 +186,6 @@ const Tabel = () => {
           }}
         >
           <TableHeader onSort={onSort} setToggleColumn={setToggleColumn} />
-
           <tbody style={{ backgroundColor: tableStyles.backgroundColor }}>
             <TableRow
               dataRow={filteredData}

@@ -137,7 +137,7 @@ th {
 }
 .style-btn {
   position: absolute;
-  top: 0;
+  top: -2px;
   right: 0;
 }
 
@@ -263,7 +263,7 @@ th {
   right: -62px;
 }
 .btn-save {
-  background: #0066a2;
+  background-color: #ff7e00;
   color: white;
   border-style: outset;
   border-color: #0066a2;
@@ -273,7 +273,7 @@ th {
   transition: all 250ms;
 }
 .btn-save {
-  background: #b9dfff;
+  /* background: #b9dfff; */
   margin: 0 10px 0 0;
   color: #fff;
   border: 1px solid #eee;
@@ -283,7 +283,7 @@ th {
 }
 
 .btn-save:hover {
-  background: #016abc;
+  background-color: #b6620e;
   color: #fff;
   border: 1px solid #eee;
 
@@ -307,6 +307,7 @@ th {
 .delete-btn {
   width: 50px;
   padding: 5px;
+  border-radius: 4px;
   cursor: pointer;
   color: black;
   margin: 0 3px;
@@ -401,4 +402,12 @@ RESPONSIVE TABLE
   .table-wrapper {
     padding: 500px 0 0 0;
   }
+}
+
+/* ===================== */
+.btn-save:disabled {
+  opacity: 0.4;
+}
+.btn-save {
+  opacity: 1;
 }

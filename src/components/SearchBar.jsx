@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
 const SearchBar = ({ callback }) => {
@@ -18,11 +16,7 @@ const SearchBar = ({ callback }) => {
     <div className='container-header'>
       <h3>Test Table</h3>
       <div>
-        <form
-          style={{ textAlign: 'center' }}
-          className='searchBar'
-          onSubmit={handleSubmit}
-        >
+        <form className='searchBar' onSubmit={handleSubmit}>
           <input
             type='text'
             className='searchBarInput'
