@@ -153,7 +153,6 @@ const Tabel = () => {
     localStorage.setItem('dataArray', JSON.stringify(allEntries));
     setData(allEntries);
 
-    // Очистка данных редактируемого ряда после сохранения
     setRowToEdit(null);
   };
 
