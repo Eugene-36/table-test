@@ -20,6 +20,11 @@ const Modal = ({
   const [currentArray, setCurrentArray] = useState([]);
 
   const [isValid, setIsValid] = useState(false);
+  const isStateValid =
+    formState.description ||
+    formState.id ||
+    formState.name ||
+    formState.title !== '';
   useEffect(() => {
     setCurrentArray(dataValidations);
   }, [dataValidations]);
@@ -202,14 +207,7 @@ const Modal = ({
           </div>
 
           <button
-            disabled={
-              formState.description ||
-              formState.id ||
-              formState.name ||
-              formState.title !== ''
-                ? false
-                : true
-            }
+            disabled={isStateValid ? false : true}
             type='submit'
             className='btn-save'
           >
